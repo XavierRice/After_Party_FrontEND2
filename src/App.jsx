@@ -27,7 +27,7 @@ function App() {
   const backend = 'http://localhost:3001/places'
   
   const OriginAddress = LocationString.split(" ").slice(0,5).join(" ")
- 
+  console.log(LocationString)
 
   return (
 
@@ -37,7 +37,7 @@ function App() {
         <NavBar />
         <AutoPage API_KEY={API_KEY} setPlaces={setPlaces} places={places} setLocationString={setLocationString}/>
         <GeneralMap places={places}/>
-        
+        <DirectionsMap API_KEY={API_KEY} OriginAddress={OriginAddress}/>
         <main>
 
           <Routes>
