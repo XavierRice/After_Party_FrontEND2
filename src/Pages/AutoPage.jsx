@@ -8,7 +8,7 @@ import ErrorBoundary from "./ErrorBoundary"
 import GeneralMap from '../Components/GeneralMap'
 import PlacesAutocomplete from '../Components/PlacesAutoComplete'
 
-function AutoPage({places, setPlaces}) {
+function AutoPage({places, setPlaces, setLocationString}) {
 
   
   const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY
@@ -16,6 +16,8 @@ function AutoPage({places, setPlaces}) {
   const [selectedLocation, setSelectedLocation] = useState("")
   const { lat, lng } = selectedLocation
   const backend = 'http://localhost:3001/places'
+
+
    
   const handleLocationSearch = (lat, lng) => {
 
@@ -45,7 +47,7 @@ console.log(places)
 
   return (
     <ErrorBoundary>
-      <PlacesAutocomplete setSelectedLocation={setSelectedLocation}/>
+      <PlacesAutocomplete setSelectedLocation={setSelectedLocation} setLocationString={setLocationString}/>
     </ErrorBoundary>
   )
 

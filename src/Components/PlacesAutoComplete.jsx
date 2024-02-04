@@ -3,11 +3,12 @@ import usePlacesAutocomplete, {
     getLatLng,
 } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
+import { useEffect } from "react";
 
 // function initMap() {
 //     console.log("hello out")
 // }
-const PlacesAutocomplete = ({setSelectedLocation}) => {
+const PlacesAutocomplete = ({setSelectedLocation, setLocationString}) => {
     const {
         ready,
         value,
@@ -15,12 +16,14 @@ const PlacesAutocomplete = ({setSelectedLocation}) => {
         setValue,
         clearSuggestions,
     } = usePlacesAutocomplete({
-        callbackName: "initMap",
+        callbackName: "DirectionsMap",
         requestOptions: {
             /* Define search scope here */
         },
         debounce: 300,
     });
+
+
     const ref = useOnclickOutside(() => {
         // When the user clicks outside of the component, we can dismiss
         // the searched suggestions by calling this method
@@ -30,8 +33,10 @@ const PlacesAutocomplete = ({setSelectedLocation}) => {
     const handleInput = (e) => {
         // Update the keyword of the input element
         setValue(e.target.value);
+       
     };
-
+  
+    
     const handleSelect =
         ({ description }) =>
             () => {
@@ -39,11 +44,13 @@ const PlacesAutocomplete = ({setSelectedLocation}) => {
                 // by setting the second parameter to "false"
                 setValue(description, false);
                 clearSuggestions();
-
+            
                 // Get latitude and longitude via utility functions
                 getGeocode({ address: description }).then((results) => {
                     const { lat, lng } = getLatLng(results[0]);
                     setSelectedLocation({ lat, lng });
+                    setLocationString(results[0].formatted_address)
+                    console.log("📍 Coordinates: ", { lat, lng });
                 });
             };
 
@@ -60,7 +67,7 @@ const PlacesAutocomplete = ({setSelectedLocation}) => {
                 </li>
             );
         });
-
+     
     return (
         <div ref={ref}>
             <input
