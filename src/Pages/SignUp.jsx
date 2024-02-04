@@ -29,7 +29,7 @@ const Signup = ({ setUser, setToken }) => {
             .then(res => res.json())
             .then(res => {
                 // console.log(res)
-                if(res.user.user_id){
+                if(res.user.id){
                     setUser(res.user)
                     setToken(res.token)
                     setFormData((prev) => ({
