@@ -1,0 +1,12 @@
+profile-image {
+    border: rgb(0, 8, 255) solid 3px;
+    border-radius: 25%;
+    width: 55%;
+    height: auto;
+  }
+  
+  .location {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  };
+  
