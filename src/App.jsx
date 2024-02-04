@@ -10,6 +10,7 @@ import Maps from "./Pages/Maps";
 import SignUp from "./Pages/SignUp";
 import GeneralMap from "./Components/GeneralMap";
 import UserError from "./Pages/UserError";
+import CardGenerator from "./Pages/CardGenerator";
 
 import NavBar from "./Components/Navbar";
 
@@ -38,6 +39,7 @@ function App() {
         <AutoPage API_KEY={API_KEY} setPlaces={setPlaces} places={places} setLocationString={setLocationString}/>
         <GeneralMap places={places}/>
         <DirectionsMap API_KEY={API_KEY} OriginAddress={OriginAddress}/>
+        <CardGenerator places={places} API_KEY={API_KEY}/>
         <main>
 
           <Routes>
