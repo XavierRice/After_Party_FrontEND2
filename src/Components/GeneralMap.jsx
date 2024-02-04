@@ -1,10 +1,27 @@
-import React from 'react';
+import { React, useEffect } from 'react';
 import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api';
 import { Container } from 'react-bootstrap';
+import axios from 'axios';
 
+
+const BACKEND = import.meta.env.VITE_BASE_URL;
 const GeneralMap = ({ places }) => {
 
-console.log(places)
+
+useEffect(() => {
+axios.get(`${BACKEND}/locations/`)
+  .then(response => {
+    // Handle successful response
+    console.log(response.data);
+    // setPlaces(response.data.results);
+  })
+  .catch(error => {
+    // Handle error
+    console.error('Error fetching nearby places:', error);
+    console.error('Error response data:', error.response.data);
+  })}, [])
+
+// console.log(places)
 
     const containerStyle = {
         width: '800px',
