@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -25,25 +26,23 @@ const PlaceCards = ({ place, API_KEY }) => {
     // const photo = place?.photo[0]
 
     return (
-        <Card style={{ width: '18rem' }} >
+        <Card style={{ width: '18rem'}} className="card border">
            <Card.Img variant="top" src={Bar} />
-            <Card.Body>
-                <Card.Title>{place.name}</Card.Title>
-                <Card.Text>
+            <Card.Body style={{backgroundColor: "#100FOF"}} >
+                <Card.Title style={{color: "#484B9D"}}>{place.name}</Card.Title>
+                <Card.Text style={{textAlign: "center"}}>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam soluta consequuntur omnis excepturi, eum labore mollitia fugiat eius molestiae saepe aperiam quam culpa, laudantium repellat maxime ipsa non nobis repudiandae.
                 </Card.Text>
-                <Card.Title>Is it bumpin!</Card.Title>
-                <Card.Text>
-                    The place is {place?.opening_hours?.open_now ? "open" : "closed"}
-                </Card.Text>
+                <Card.Text style={{textAlign: "center"}}>{place?.opening_hours?.open_now ? "It's bumpin!" : "AnotherTime"}  {place?.opening_hours?.open_now ? "👌🏾" : "👎🏾"}</Card.Text>
                 <FontAwesomeIcon
                     icon={faLightbulb}
                     style={{
-                        color: place?.opening_hours?.open_now ? "green" : "red",
+                        color: place?.opening_hours?.open_now ? "#CEB91C" : "red",
                         fontSize: "2em",
+                        textAlign: "center"
                     }}
                 />
-                <Button variant="primary" onClick={clickHandler}>Do Something!</Button>
+                <Button variant="primary" onClick={clickHandler} style={{textAlign:"center"}}>Get Directions</Button>
             </Card.Body> 
         </Card>
 

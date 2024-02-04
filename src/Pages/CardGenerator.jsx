@@ -1,7 +1,7 @@
 
 import React, {useState, useEffect} from "react"
 import PlaceCards from "../Components/PlaceCards"
-
+import { Row, Col } from "react-bootstrap"
 const CardGenerator = ({places, API_KEY}) => {
     const [ fivePlaces, setFivePlaces] = useState([])
    
@@ -13,11 +13,13 @@ const CardGenerator = ({places, API_KEY}) => {
   console.log(fivePlaces)
 
   return (
-     <div>
+     <Row>
         {fivePlaces.map( (place) => (
-            <PlaceCards place={place} API_KEY={API_KEY} key={place.place_id}/>
+      <Col >
+           <PlaceCards place={place} API_KEY={API_KEY} key={place.place_id}/>
+           </Col>
         ))}
-     </div>
+     </Row>
   )
 }
 
