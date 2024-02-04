@@ -6,7 +6,7 @@ import {
 } from '@vis.gl/react-google-maps'
 
 
-const Directions = () => {
+const Directions = ({OriginAddress}) => {
    const map = useMap();
    const routesLibrary = useMapsLibrary("routes");
    const [directionsService, setDirectionsService] = useState();
@@ -17,6 +17,8 @@ const Directions = () => {
 
    const selectedRoute = routes[routeIndex]
    const leg = selectedRoute?.legs[0]
+   
+   
 
    useEffect(() => {
     if(!routesLibrary || !map) return
@@ -31,7 +33,7 @@ const Directions = () => {
 
 
       directionsService.route({
-        origin: "304 Quincy St, Brooklyn NY",
+        origin: OriginAddress,
         destination: "47-10 Austell Pl, Long Island City NY",
         travelMode: google.maps.TravelMode.DRIVING,
         provideRouteAlternatives: true,

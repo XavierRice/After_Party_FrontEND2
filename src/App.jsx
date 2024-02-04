@@ -22,13 +22,12 @@ function App() {
   const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY
   const [places, setPlaces] = useState([])
   const [selectedLocation, setSelectedLocation] = useState("")
+  const [LocationString, setLocationString] = useState("")
   const { lat, lng } = selectedLocation
   const backend = 'http://localhost:3001/places'
   
-  
-  
-  
-  console.log(selectedLocation)
+  const OriginAddress = LocationString.split(" ").slice(0,5).join(" ")
+ 
 
   return (
 
@@ -36,9 +35,9 @@ function App() {
       <h1>After Party</h1>
        <Router> 
         <NavBar />
-        <AutoPage API_KEY={API_KEY} setPlaces={setPlaces} places={places}/>
+        <AutoPage API_KEY={API_KEY} setPlaces={setPlaces} places={places} setLocationString={setLocationString}/>
         <GeneralMap places={places}/>
-        <DirectionsMap API_KEY={API_KEY}/>
+        
         <main>
 
           <Routes>
@@ -46,7 +45,7 @@ function App() {
             <Route path="/app/Login" element={<Login />} />
             <Route path="/app/SignUp" element={<SignUp />} />
             <Route path="/app/Location" element={<Location />} />
-            <Route path="/app/Maps" element={<Maps />} />
+            <Route path="/app/Maps" element={<DirectionsMap API_KEY={API_KEY} OriginAddress={OriginAddress}/>} />
             <Route path="*" element={<Error />} />
           </Routes>
         </main>

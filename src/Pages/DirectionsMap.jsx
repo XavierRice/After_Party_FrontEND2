@@ -11,7 +11,7 @@ import {
 } from "@vis.gl/react-google-maps"
 
 
-const DirectionsMap = ({API_KEY}) => {
+const DirectionsMap = ({API_KEY, OriginAddress}) => {
     
     const position = {   lat: 40.712776, lng: -74.005974 } 
 
@@ -23,7 +23,7 @@ return <div style={{height:"100vh", width: "100%"}}>
         zoom={9}
         fullscreenControl={false}       
         >
-     <Directions/>
+     <Directions OriginAddress={OriginAddress}/>
         </Map>
     </APIProvider>
 
