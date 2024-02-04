@@ -4,7 +4,7 @@ import axios from 'axios'
 
 //Components:
 
-import ErrorBoundary from "./ErrorBoundary"
+
 import GeneralMap from '../Components/GeneralMap'
 import PlacesAutocomplete from '../Components/PlacesAutoComplete'
 
@@ -46,9 +46,9 @@ console.log(places)
   }, [selectedLocation])
 
   return (
-    <ErrorBoundary>
+   
       <PlacesAutocomplete setSelectedLocation={setSelectedLocation} setLocationString={setLocationString}/>
-    </ErrorBoundary>
+   
   )
 
 }

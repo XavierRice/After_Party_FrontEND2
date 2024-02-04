@@ -16,7 +16,7 @@ const PlacesAutocomplete = ({setSelectedLocation, setLocationString}) => {
         setValue,
         clearSuggestions,
     } = usePlacesAutocomplete({
-        callbackName: "DirectionsMap",
+        callbackName: "YOUR_CALLBACK_NAME",
         requestOptions: {
             /* Define search scope here */
         },
@@ -62,7 +62,7 @@ const PlacesAutocomplete = ({setSelectedLocation, setLocationString}) => {
             } = suggestion;
 
             return (
-                <li key={place_id} onClick={handleSelect(suggestion)}>
+                <li style={{color: "gold"}} key={place_id} onClick={handleSelect(suggestion)}>
                     <strong>{main_text}</strong> <small>{secondary_text}</small>
                 </li>
             );

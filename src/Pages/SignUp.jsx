@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import { Form, Button, Row, Col, Container } from 'react-bootstrap'
+import { useNavigate } from 'react-router';
 
 const Signup = ({ setUser, setToken }) => {
+    const navigate = useNavigate()
     const API = import.meta.env.VITE_BASE_URL
     const [formData, setFormData] = useState({
+        firstname: '',
+        lastname: '',
         username: '',
         email: '',
-        password_hash: '',
+        password_hash: ''
     })
-
     const handleInputChange = (event) => {
         const { name, value } = event.target
         setFormData((prev) => ({
@@ -16,39 +19,65 @@ const Signup = ({ setUser, setToken }) => {
             [name]: value
         }))
     }
-
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        fetch(`${API}/users`, {
+    const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+        const response = await fetch($`{API}/users`, {
             method: "POST",
             body: JSON.stringify(formData),
             headers: {
                 "Content-Type": "application/json"
             }
-        })
-            .then(res => res.json())
-            .then(res => {
-                // console.log(res)
-                if(res.user.id){
-                    setUser(res.user)
-                    setToken(res.token)
-                    setFormData((prev) => ({
-                        username: '',
-                        email: '',
-                        password_hash: ''
-                    }))
-                } else {
-                    console.log(res)
-                }
-            })
-            .catch(err => console.log(err))
+        });
+        console.log(response)
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const res = await response.json();
+        console.log(res)
+        if (res.user && res.user.id) {
+            setUser(res.user);
+            setToken(res.token);
+            setFormData((prev) => ({
+                firstname: '',
+                lastname: '',
+                username: '',
+                email: '',
+                password_hash: ''
+            }));
+            navigate ('/app/Maps')
+        } else {
+            console.log(res);
+        }
+    } catch (error) {
+        console.error('Error during signup:', error);
     }
-
+};
     return (
         <Container style={{ marginTop: "50px" }}>
             <Row className="justify-content-md-center">
                 <Col md={6}>
-                    <Form onSubmit={handleSubmit}>
+                    <Form onSubmit={(e) => handleSubmit(e)}>
+                    <Form.Group className="mb-3" controlId="username">
+                            <Form.Label>First Name</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="First Name"
+                                name="firstname"
+                                value={formData.firstname}
+                                onChange={handleInputChange}
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="lastname">
+                            <Form.Label>Last Name</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Last Name"
+                                name="lastname"
+                                value={formData.lastname}
+                                onChange={handleInputChange}
+                            />
+                        </Form.Group>
                         <Form.Group className="mb-3" controlId="username">
                             <Form.Label>Username</Form.Label>
                             <Form.Control
@@ -59,7 +88,6 @@ const Signup = ({ setUser, setToken }) => {
                                 onChange={handleInputChange}
                             />
                         </Form.Group>
-
                         <Form.Group className="mb-3" controlId="email">
                             <Form.Label>Email</Form.Label>
                             <Form.Control
@@ -70,7 +98,6 @@ const Signup = ({ setUser, setToken }) => {
                                 onChange={handleInputChange}
                             />
                         </Form.Group>
-
                         <Form.Group className="mb-3" controlId="password_hash">
                             <Form.Label>Password</Form.Label>
                             <Form.Control
@@ -88,5 +115,4 @@ const Signup = ({ setUser, setToken }) => {
         </Container>
     );
 };
-
 export default Signup;

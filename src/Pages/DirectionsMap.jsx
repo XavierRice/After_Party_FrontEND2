@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import Directions from "../Components/Directions";
-import ErrorBoundary from "./ErrorBoundary";
+
 
 import {
     APIProvider,
@@ -16,7 +16,7 @@ const DirectionsMap = ({API_KEY, OriginAddress}) => {
     const position = {   lat: 40.712776, lng: -74.005974 } 
 
 return <div style={{height:"100vh", width: "100%"}}>
-    <ErrorBoundary>
+  
     <APIProvider apiKey={API_KEY}>
         <Map
         center={position}
@@ -27,7 +27,7 @@ return <div style={{height:"100vh", width: "100%"}}>
         </Map>
     </APIProvider>
 
-    </ErrorBoundary>
+   
 </div>
 
 

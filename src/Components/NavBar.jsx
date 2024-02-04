@@ -41,7 +41,7 @@ const NavBar = ({ user, setUser, setToken }) => {
                     :
                     <Nav className="ms-auto">
                         <Nav.Link as={Link} to="/profile">{user.username}</Nav.Link>
-                        <Button variant="outline-light"
+                        <Button type="button" className="btn btn-warning"
                         style={{ color: 'red' }}
                         onClick={handleLogout}
                         >Log out</Button>
