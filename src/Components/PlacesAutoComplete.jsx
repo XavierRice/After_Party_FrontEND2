@@ -70,11 +70,11 @@ const PlacesAutocomplete = ({setSelectedLocation, setLocationString}) => {
      
     return (
         <div ref={ref}>
-            <input
+            <input className="form-control text-center " placeholder="where are you?"
                 value={value}
                 onChange={handleInput}
                 disabled={!ready}
-                placeholder="Where are you going?"
+                
             />
             {/* We can use the "status" to decide whether we should display the dropdown or not */}
             {status === "OK" && <ul>{renderSuggestions()}</ul>}

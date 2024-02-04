@@ -13,9 +13,9 @@ const CardGenerator = ({places, API_KEY}) => {
   console.log(fivePlaces)
 
   return (
-     <Row>
+     <Row className="pb-4 pt-5">
         {fivePlaces.map( (place) => (
-      <Col >
+      <Col className="pb-4">
            <PlaceCards place={place} API_KEY={API_KEY} key={place.place_id}/>
            </Col>
         ))}
