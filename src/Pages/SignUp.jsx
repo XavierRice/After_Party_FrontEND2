@@ -29,7 +29,9 @@ const Signup = ({ setUser, setToken }) => {
             headers: {
                 "Content-Type": "application/json"
             }
+            
         });
+        console.log(response)
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -60,7 +62,7 @@ const Signup = ({ setUser, setToken }) => {
         <Container style={{ marginTop: "50px" }}>
             <Row className="justify-content-md-center">
                 <Col md={6}>
-                    <Form onSubmit={handleSubmit}>
+                    <Form onSubmit={(e) => handleSubmit(e)}>
                     <Form.Group className="mb-3" controlId="username">
                             <Form.Label>First Name</Form.Label>
                             <Form.Control

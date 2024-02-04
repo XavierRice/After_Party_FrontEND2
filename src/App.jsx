@@ -24,6 +24,9 @@ function App() {
   const { lat, lng } = selectedLocation
   const backend = 'http://localhost:3001/places'
 
+  const [user, setUser] = useState(null)
+  const [token, setToken] = useState(null)
+
   console.log(places)
 
   return (
@@ -41,7 +44,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/app/Login" element={<Login />} />
-            <Route path="/app/SignUp" element={<SignUp />} />
+            <Route path="/app/SignUp" element={<SignUp setUser={setUser } setToken={setToken}/>} />
             <Route path="/app/Location" element={<Location />} />
             <Route path="/app/Maps" element={<Maps />} />
             <Route path="*" element={<Error />} />
