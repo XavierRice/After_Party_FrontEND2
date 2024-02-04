@@ -21,6 +21,8 @@ const PlacesAutocomplete = ({setSelectedLocation}) => {
         },
         debounce: 300,
     });
+
+
     const ref = useOnclickOutside(() => {
         // When the user clicks outside of the component, we can dismiss
         // the searched suggestions by calling this method
@@ -44,6 +46,7 @@ const PlacesAutocomplete = ({setSelectedLocation}) => {
                 getGeocode({ address: description }).then((results) => {
                     const { lat, lng } = getLatLng(results[0]);
                     setSelectedLocation({ lat, lng });
+                    console.log("📍 Coordinates: ", { lat, lng });
                 });
             };
 

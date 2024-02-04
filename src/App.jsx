@@ -14,7 +14,8 @@ import UserError from "./Pages/UserError";
 import NavBar from "./Components/Navbar";
 
 import PlacesAutocomplete from "./Components/PlacesAutoComplete";
-
+import Directions from "./Components/Directions";
+import DirectionsMap from "./Pages/DirectionsMap";
 
 function App() {
 
@@ -23,8 +24,11 @@ function App() {
   const [selectedLocation, setSelectedLocation] = useState("")
   const { lat, lng } = selectedLocation
   const backend = 'http://localhost:3001/places'
-
-  console.log(places)
+  
+  
+  
+  
+  console.log(selectedLocation)
 
   return (
 
@@ -32,10 +36,9 @@ function App() {
       <h1>After Party</h1>
        <Router> 
         <NavBar />
-
         <AutoPage API_KEY={API_KEY} setPlaces={setPlaces} places={places}/>
         <GeneralMap places={places}/>
-
+        <DirectionsMap API_KEY={API_KEY}/>
         <main>
 
           <Routes>

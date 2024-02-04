@@ -1,36 +1,62 @@
-import React, { useState, useEffect, useRef } from "react"
+import { useEffect, useState } from "react";
+import { 
+  Map,
+  useMapsLibrary,
+  useMap
+} from '@vis.gl/react-google-maps'
 
 
-const Directions = ({lat, lng }) => {
+const Directions = () => {
+   const map = useMap();
+   const routesLibrary = useMapsLibrary("routes");
+   const [directionsService, setDirectionsService] = useState();
+   const [directionsRenderer, setDirectionsRenderer] = useState();
 
-    const directionsService = new google.maps.DirectionsService();
-    const directionsRenderer = new google.maps.DirectionsRenderer();
-    
-    const onChangeHandler = function () {
-        calculateAndDisplayRoute(directionsService, directionsRenderer);
-      };
+   const [routes, setRoutes]=useState([])
+   const [routeIndex, setRouteIndex] = useState(0)
 
-      document.getElementById("start").addEventListener("change", onChangeHandler);
-      document.getElementById("end").addEventListener("change", onChangeHandler);
+   const selectedRoute = routes[routeIndex]
+   const leg = selectedRoute?.legs[0]
 
-      function calculateAndDisplayRoute(directionsService, directionsRenderer) {
-        directionsService
-          .route({
-            origin: {
-              query: document.getElementById("start").value,
-            },
-            destination: {
-              query: document.getElementById("end").value,
-            },
-            travelMode: google.maps.TravelMode.DRIVING,
-          })
-          .then((response) => {
-            directionsRenderer.setDirections(response);
-          })
-          .catch((e) => window.alert("Directions request failed due to " + status));
-      }
+   useEffect(() => {
+    if(!routesLibrary || !map) return
+
+    setDirectionsService( new routesLibrary.DirectionsService());
+    setDirectionsRenderer( new routesLibrary.DirectionsRenderer({map}))
+
+   }, [routesLibrary, map])
+
+    useEffect(()=> {
+      if (!directionsService || !directionsRenderer ) return
 
 
+      directionsService.route({
+        origin: "304 Quincy St, Brooklyn NY",
+        destination: "47-10 Austell Pl, Long Island City NY",
+        travelMode: google.maps.TravelMode.DRIVING,
+        provideRouteAlternatives: true,
+      })
+      .then(res => {
+        directionsRenderer.setDirections(res)
+        setRoutes(res.routes)
+      })
+    }, [directionsService, directionsRenderer])
 
+console.log(routes)
+ if(!leg) return null
+  
+let startAddy = leg.start_address?.split(",")[0];
+let endAddy = leg.end_address?.split(",")[0];
 
-    }
+ return (
+  <div className="directions">
+    <h2>{selectedRoute.summary}</h2>
+    <p>
+      {startAddy} to {endAddy}
+    </p>
+  </div>
+ )
+
+};
+
+export default Directions;
