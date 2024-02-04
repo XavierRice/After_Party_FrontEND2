@@ -9,7 +9,7 @@ const GeneralMap = ({ places }) => {
 
 
 useEffect(() => {
-axios.get(`${BACKEND}/locations/`)
+axios.get(`${BACKEND}/locations`)
   .then(response => {
     // Handle successful response
     console.log(response.data);
