@@ -1,5 +1,5 @@
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import AutoPage from "./Pages/AutoPage";
@@ -33,24 +33,24 @@ function App() {
 
     <div className="App">
       <h1>After Party</h1>
-       <Router> 
-        <NavBar />
+       
+        <NavBar user={user} setUser={setUser} setToken={setToken}/>
 
         <AutoPage API_KEY={API_KEY} setPlaces={setPlaces} places={places}/>
         <GeneralMap places={places}/>
 
-        <main>
+      
 
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/app/Login" element={<Login />} />
+            <Route path="/app/Login" element={<Login setUser={setUser} setToken={setToken}/>} />
             <Route path="/app/SignUp" element={<SignUp setUser={setUser } setToken={setToken}/>} />
             <Route path="/app/Location" element={<Location />} />
             <Route path="/app/Maps" element={<Maps />} />
             <Route path="*" element={<Error />} />
           </Routes>
-        </main>
-      </Router>
+      
+    
     </div>
   );
 

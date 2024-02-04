@@ -38,8 +38,9 @@ const Signup = ({ setUser, setToken }) => {
         }
 
         const res = await response.json();
+        console.log(res)
 
-        if (res.user && res.user.user_id) {
+        if (res.user && res.user.id) {
             setUser(res.user);
             setToken(res.token);
             setFormData((prev) => ({
