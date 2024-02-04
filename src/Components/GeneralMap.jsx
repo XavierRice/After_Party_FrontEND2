@@ -32,6 +32,11 @@ axios.get(`${BACKEND}/locations`)
         lat: 40.712776,
         lng: -74.005974
     };
+    
+    const handleMapClick = () => {
+        console.log("move to cards")
+    }
+
     return (
 
         <GoogleMap
@@ -49,6 +54,7 @@ axios.get(`${BACKEND}/locations`)
                 title={place.name}
             />
         ))}
+        <input onClick={handleMapClick}/>
         </GoogleMap>
 
     )
