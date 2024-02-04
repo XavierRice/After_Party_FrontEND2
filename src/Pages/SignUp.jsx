@@ -4,9 +4,12 @@ import { Form, Button, Row, Col, Container } from 'react-bootstrap'
 const Signup = ({ setUser, setToken }) => {
     const API = import.meta.env.VITE_BASE_URL
     const [formData, setFormData] = useState({
+        firstname,
+        lastname,
         username: '',
         email: '',
-        password_hash: '',
+        password_hash: ''
+    
     })
 
     const handleInputChange = (event) => {
@@ -33,6 +36,8 @@ const Signup = ({ setUser, setToken }) => {
                     setUser(res.user)
                     setToken(res.token)
                     setFormData((prev) => ({
+                        firstname,
+                        lastname,
                         username: '',
                         email: '',
                         password_hash: ''
