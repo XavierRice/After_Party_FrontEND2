@@ -1,25 +1,8 @@
-const Card = () => {
-    return openingData.map((el) => {
-        return (
-            <div className="card-container card">
-                <div className="positions-container">{el.positions}</div>
-                <div className="image-container">
-                    <img src={el.logo} alt="" height="375" width="475" />
-                </div>
-                <div className="card-content">
-                    <div clasName="title-container">
-                        <b>
-                            <h3>{el.title}</h3>
-                        </b>
-                    </div>
-                    <div className="message-container">
-                        <h5>{el.message}</h5>
-                    </div>
-                </div>
-                <div className="button-container">
-                    <button className="buttons btn">Join Now!</button>
-                </div>
-            </div>
-        );
-    });
-};
+<CCard style={{ width: '18rem' }}>
+  <CCardImage orientation="top" src={ReactImg} />
+  <CCardBody>
+    <CCardText>
+      Some quick example text to build on the card title and make up the bulk of the card's content.
+    </CCardText>
+  </CCardBody>
+</CCard>
