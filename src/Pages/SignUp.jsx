@@ -23,7 +23,7 @@ const Signup = ({ setUser, setToken }) => {
             method: "POST",
             body: JSON.stringify(formData),
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
             }
         })
             .then(res => res.json())

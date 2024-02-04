@@ -1,6 +1,6 @@
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import React, { useEffect, useState } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
 import AutoPage from "./Pages/AutoPage";
 import Home from "./Pages/Home";
@@ -25,6 +25,8 @@ function App() {
   const [LocationString, setLocationString] = useState("")
   const { lat, lng } = selectedLocation
   const backend = 'http://localhost:3001/places'
+  const [user, setUser] = useState(null)
+  const [token, setToken] = useState(null)
   
   const OriginAddress = LocationString.split(" ").slice(0,5).join(" ")
  
@@ -34,16 +36,16 @@ function App() {
     <div className="App">
       <h1>After Party</h1>
        <Router> 
-        <NavBar />
+        <NavBar user={user} setUser={setUser} setToken={setToken}/>
         <AutoPage API_KEY={API_KEY} setPlaces={setPlaces} places={places} setLocationString={setLocationString}/>
         <GeneralMap places={places}/>
         
         <main>
 
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home user={user} token={token}/>} />
             <Route path="/app/Login" element={<Login />} />
-            <Route path="/app/SignUp" element={<SignUp />} />
+            <Route path="/app/SignUp" element={<SignUp setUser={setUser} setToken={setToken}/>} />
             <Route path="/app/Location" element={<Location />} />
             <Route path="/app/Maps" element={<DirectionsMap API_KEY={API_KEY} OriginAddress={OriginAddress}/>} />
             <Route path="*" element={<Error />} />
