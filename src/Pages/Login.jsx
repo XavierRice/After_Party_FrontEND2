@@ -31,7 +31,7 @@ const Login = ({ setUser, setToken }) => {
     })
         .then(res => res.json())
         .then(res => {
-            if(res.user.user_id){
+            if(res.user.id){
                 const { user, token } = res
                 setUser(user)
                 setToken(token)
