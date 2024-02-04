@@ -18,8 +18,6 @@ import AutoMap from "./Pages/AutoMap";
 
 function App() {
 
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null)
 
   const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
   const [places, setPlaces] = useState([]);
