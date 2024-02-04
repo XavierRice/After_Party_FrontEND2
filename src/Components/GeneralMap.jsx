@@ -15,6 +15,11 @@ console.log(places)
         lat: 40.712776,
         lng: -74.005974
     };
+    
+    const handleMapClick = () => {
+        console.log("move to cards")
+    }
+
     return (
 
         <GoogleMap
@@ -32,6 +37,7 @@ console.log(places)
                 title={place.name}
             />
         ))}
+        <input onClick={handleMapClick}/>
         </GoogleMap>
 
     )

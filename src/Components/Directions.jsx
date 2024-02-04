@@ -33,9 +33,9 @@ const Directions = ({OriginAddress}) => {
 
 
       directionsService.route({
-        origin: OriginAddress,
+        origin: "304 Quincy St, Brooklyn NY",
         destination: "47-10 Austell Pl, Long Island City NY",
-        travelMode: google.maps.TravelMode.DRIVING,
+        travelMode: google.maps.TravelMode.WALKING,
         provideRouteAlternatives: true,
       })
       .then(res => {
